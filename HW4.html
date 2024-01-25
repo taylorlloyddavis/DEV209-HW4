@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DEV209 HW4 Calories Counter</title>
+      <link rel="stylesheet" type="text/css" href="form.css">
+</head>
+
+<body>
+
+<h2>Calorie Tracker</h2>
+
+<!-- return set to false to prevent default form submission to a URL -->
+<form name = "mainFrom" onsubmit="return false">
+
+<!--       The <fieldset> tag is used to group related elements in a form. -->
+	<fieldset id="caltracker">
+    <!--       The <legend> tag is puts a title on this subset of the form -->
+    <legend>Log Food Intake</legend>
+    <!--       for= some id connects the lable to to the input box -->
+   <label for="foodname"> Food Name:</label> 
+    <input name="foodname" id="foodname" />  <br>
+    
+     <label for="city">Calories:</label>
+    <input name="city" id="city" /> <br>
+    
+    
+      <!-- here we submit to a local js file -->
+    <input type="submit" value="Submit" onclick="formSubmitEvent()">
+    
+    </fieldset>
+</form>
+
+
+<button type="button" id="show">Total Calories</button><br>
+<textarea rows="4" cols="40" id="output" ></textarea>
+
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
