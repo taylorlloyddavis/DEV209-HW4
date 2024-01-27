@@ -1,38 +1,47 @@
-// code the runs immediately when page is first loaded
-
-// define a Constructor function
-var Food = function(fName, fCalories) {
-    this.name = fName;
-    this.city = fCalories;
+ // define a Constructor function
+ var Food = function(fName, fCalories) {
+    this.fName = fName;
+    this.fCalories = parseInt(fCalories);
 };
 
-FoodArray = []; // define an array to hold Food objects
+foodArray = []; // define an array to hold Food objects
 
 // pr-load array with 2 objects
-let newFood1 = new Food("Banana",  165);
-FoodArray.push(newFood1);
+let newFood1 = new Food("Banana", 165);
+foodArray.push(newFood1);
 
-let newFood2 = new Food("Apple",  200);
-FoodArray.push(newFood2);
-
+let newFood2 = new Food("Apple", 200);
+foodArray.push(newFood2);
 
 document.addEventListener("DOMContentLoaded", function (event) {
-
-// define what should happend when the "show one" button is clicked
-
-        document.getElementById("output").value = message;  // write out the data
-    
+    updateTotalCalories(); //when button is pressed, these pre-loaded objects will be updated into the array
 });
+
+// Function to update total calories
+function updateTotalCalories() {
+  const totalCaloriesElement = document.getElementById('totalCalories');
+  let totalCalories = 0;
+
+  foodArray.forEach(food => {
+    totalCalories += food.fCalories;
+  });
+
+  totalCaloriesElement.textContent = totalCalories;
+}
 
 // define what should happen when the form is submitted
 function formSubmitEvent() {
-    let tname = document.getElementById("foodname").value;
-    let tcalories = document.getElementById("calories").value;
+  let foodName = document.getElementById("foodName").value;
+  let calories = document.getElementById("calories").value;
 
-    CustomerArray.push( new Customer(tname, tcalories))
+  if (foodName.trim() !== '' && !isNaN(calories) && parseInt(calories) > 0) {
+    foodArray.push(new Food(foodName, calories));
+    console.log(foodArray); // write array into console
+    updateTotalCalories();
     // clear text boxes
-    document.getElementById("foodname").value = "";
+    document.getElementById("foodName").value = "";
     document.getElementById("calories").value = "";
+  } else {
+    alert('Please enter a food name and calorie amount.'); //displays message to enter food name and calorie amt
+  }
 }
-
-
